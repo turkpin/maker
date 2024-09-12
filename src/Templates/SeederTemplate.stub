@@ -1,0 +1,8 @@
+<?php
+
+class {name}Seeder
+{
+    public static function run()
+    {
+    }
+}

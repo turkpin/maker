@@ -1,0 +1,12 @@
+<?php
+
+class {name}Repository
+{
+    public function find()
+    {
+    }
+
+    public function save()
+    {
+    }
+}

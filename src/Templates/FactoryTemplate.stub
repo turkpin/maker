@@ -1,0 +1,8 @@
+<?php
+
+class {name}Factory
+{
+    public static function create()
+    {
+    }
+}
