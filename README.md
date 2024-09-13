@@ -1,36 +1,12 @@
-# Setup
-
-## Installation
-
-Add the following to your `composer.json` file:
-
-```json
-{
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "https://github.com/turkpin/maker.git"
-		}
-	],
-	"require": {
-		"turkpin/maker": "dev-master"
-	}
-}
-```
-
-Then run:
+# Installation
 
 ```bash
-composer update
-
-composer dump-autoload
-
+composer require turkpin/maker
 ln -s vendor/turkpin/maker/make make
-
 chmod +x make
 ```
 
-# Command List
+# Usage
 
 - **php make User** makes the following files:
 
