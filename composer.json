@@ -2,6 +2,8 @@
 	"name": "turkpin/maker",
 	"version": "1.0.0",
 	"type": "library",
+	"minimum-stability": "dev",
+	"prefer-stable": true,
 	"autoload": {
 		"psr-4": {
 			"Turkpin\\Maker\\": "src/"
@@ -14,7 +16,7 @@
 	},
 	"authors": [
 		{
-			"name": "Turkpin Dev Team",
+			"name": "Turkkpin Dev",
 			"email": "dev@turkpin.com"
 		}
 	]
