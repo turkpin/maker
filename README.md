@@ -1,7 +1,7 @@
 # Installation
 
 ```bash
-composer require turkpin/maker
+composer require --dev turkpin/maker
 ln -s vendor/turkpin/maker/make make
 chmod +x make
 ```
