@@ -49,7 +49,7 @@ class MakeControllerCommand extends Command
     {
         $inflector = new EnglishInflector();
 
-        $namePlural = $inflector->pluralize($name);
+        $namePlural = $inflector->pluralize($name)[0];
         $controllerName = "{$namePlural}Controller";
 
         $dirPath = $baseDir ? "controllers/{$baseDir}" : "controllers";
