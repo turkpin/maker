@@ -17,15 +17,11 @@ class MakerHelper
         $names = $input->getArgument('names');
         $filesystem = new Filesystem();
 
-        if (count($names) === 1) {
-            self::createItem($type, $names[0], $filesystem, $output);
-        } elseif (count($names) > 1) {
-            $directory = $names[0];
-            $items = array_slice($names, 1);
+        $directory = count($names) > 1 ? $names[0] : null;
+        $items = count($names) > 1 ? array_slice($names, 1) : [$names[0]];
 
-            foreach ($items as $item) {
-                self::createItem($type, $item, $filesystem, $output, $directory);
-            }
+        foreach ($items as $item) {
+            self::createItem($type, $item, $filesystem, $output, $directory);
         }
     }
 
@@ -36,29 +32,45 @@ class MakerHelper
         OutputInterface $output,
         string $baseDir = null
     ) {
-        if ($type === 'controller') {
-            $inflector = new EnglishInflector();
-            $namePlural = $inflector->pluralize($name)[0]; // İlk çoğul formu al
-            $name = "{$namePlural}Controller";
+        $name = ucfirst($name);
+        $type = ucfirst($type);
+
+        $dirMap = [
+            'models' => ['Entity', 'Repository', 'Factory', 'Service', 'Seeder'],
+            'controllers' => ['Controller']
+        ];
+
+        foreach ($dirMap as $dir => $types) {
+            if (in_array($type, $types)) {
+                if ($type === 'Controller') {
+                    echo $dirPath = $baseDir ? "{$dir}/{$baseDir}" : $dir;
+                    $name = self::pluralizeNameIfNecessary($name, $type);
+                } else {
+                    $dirPath = $baseDir ? "{$dir}/{$baseDir}/{$name}" : "{$dir}/{$name}";
+                }
+                break;
+            }
         }
 
-        // Alt klasör yapısı yalnızca 'controller' değilse oluşturulacak
-        if ($type === 'controller') {
-            $dirPath = $baseDir ? "controllers/{$baseDir}" : "controllers";
-        } else {
-            $dirPath = $baseDir ? "{$type}/{$baseDir}/{$name}" : "{$type}/{$name}";
-        }
-
-        $path = "{$dirPath}/{$name}.php";
+        $path = "{$dirPath}/{$name}{$type}.php";
 
         Directory::ensureDirectoryExists($dirPath, $filesystem);
 
         if (!$filesystem->exists($path)) {
-            $content = Template::render($type, ['name' => $name]);
+            $content = Template::render(strtolower($type), ['name' => $name]);
             $filesystem->dumpFile($path, $content);
-            $output->writeln("<info>{$type} '{$name}' created successfully at {$path}.</info>");
+            $output->writeln("<info>{$name}{$type} created successfully at {$path}.</info>");
         } else {
-            $output->writeln("<error>{$type} '{$name}' already exists at {$path}.</error>");
+            $output->writeln("<error>{$name}{$type} already exists at {$path}.</error>");
         }
+    }
+
+    private static function pluralizeNameIfNecessary(string $name, string $type): string
+    {
+        if ($type === 'Controller') {
+            $inflector = new EnglishInflector();
+            return $inflector->pluralize($name)[0];
+        }
+        return $name;
     }
 }
