@@ -13,8 +13,6 @@ use Turkpin\Maker\Helpers\MakerHelper;
 
 class MakeRepositoryCommand extends Command
 {
-    protected static $defaultName = 'repository';
-
     public function __construct()
     {
         parent::__construct();
@@ -23,6 +21,7 @@ class MakeRepositoryCommand extends Command
     protected function configure()
     {
         $this
+            ->setName('repository')
             ->setDescription('Create repositories, optionally inside a directory')
             ->addArgument('names', InputArgument::IS_ARRAY | InputArgument::REQUIRED, 'The repository names or directory and repository names');
     }

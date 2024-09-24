@@ -14,7 +14,6 @@ use Symfony\Component\String\Inflector\EnglishInflector;
 
 class MakeControllerCommand extends Command
 {
-    protected static $defaultName = 'controller';
     public function __construct()
     {
         parent::__construct();
@@ -23,6 +22,7 @@ class MakeControllerCommand extends Command
     protected function configure()
     {
         $this
+            ->setName('controller')
             ->setDescription('Create controllers, optionally inside a directory')
             ->addArgument('names', InputArgument::IS_ARRAY | InputArgument::REQUIRED, 'The controller names or directory and controller names');
     }

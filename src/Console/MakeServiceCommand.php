@@ -13,8 +13,6 @@ use Turkpin\Maker\Helpers\MakerHelper;
 
 class MakeServiceCommand extends Command
 {
-    protected static $defaultName = 'service';
-
     public function __construct()
     {
         parent::__construct();
@@ -23,6 +21,7 @@ class MakeServiceCommand extends Command
     protected function configure()
     {
         $this
+            ->setName('service')
             ->setDescription('Create services, optionally inside a directory')
             ->addArgument('names', InputArgument::IS_ARRAY | InputArgument::REQUIRED, 'The service names or directory and service names');
     }

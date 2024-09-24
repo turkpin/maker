@@ -11,8 +11,6 @@ use Turkpin\Maker\Helpers\Command as CommandHelper;
 
 class MakeModelCommand extends Command
 {
-    protected static $defaultName = 'model';
-
     private $application;
 
     public function __construct(Application $application)
@@ -24,6 +22,7 @@ class MakeModelCommand extends Command
     protected function configure()
     {
         $this
+            ->setName('model')
             ->setDescription('Create models, including Entity, Service, and Repository')
             ->addArgument('names', InputArgument::IS_ARRAY | InputArgument::REQUIRED, 'The name(s) of the model(s)');
     }

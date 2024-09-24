@@ -13,8 +13,6 @@ use Turkpin\Maker\Helpers\MakerHelper;
 
 class MakeFactoryCommand extends Command
 {
-    protected static $defaultName = 'factory';
-
     public function __construct()
     {
         parent::__construct();
@@ -23,6 +21,7 @@ class MakeFactoryCommand extends Command
     protected function configure()
     {
         $this
+            ->setName('factory')
             ->setDescription('Create factorys, optionally inside a directory')
             ->addArgument('names', InputArgument::IS_ARRAY | InputArgument::REQUIRED, 'The factory names or directory and factory names');
     }

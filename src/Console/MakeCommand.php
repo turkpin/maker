@@ -11,8 +11,6 @@ use Turkpin\Maker\Helpers\Command as CommandHelper;
 
 class MakeCommand extends Command
 {
-    protected static $defaultName = 'make';
-
     private $application;
 
     public function __construct(Application $application)
@@ -24,6 +22,7 @@ class MakeCommand extends Command
     protected function configure()
     {
         $this
+            ->setName('make')
             ->setDescription('General make command that runs Entity, Service, Repository, and Controller')
             ->addArgument('names', InputArgument::IS_ARRAY | InputArgument::REQUIRED, 'The name of the class (Entity, Service, Repository, and Controller will be created)');
     }

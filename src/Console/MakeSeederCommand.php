@@ -13,8 +13,6 @@ use Turkpin\Maker\Helpers\MakerHelper;
 
 class MakeSeederCommand extends Command
 {
-    protected static $defaultName = 'seeder';
-
     public function __construct()
     {
         parent::__construct();
@@ -23,6 +21,7 @@ class MakeSeederCommand extends Command
     protected function configure()
     {
         $this
+            ->setName('seeder')
             ->setDescription('Create seeders, optionally inside a directory')
             ->addArgument('names', InputArgument::IS_ARRAY | InputArgument::REQUIRED, 'The seeder names or directory and seeder names');
     }

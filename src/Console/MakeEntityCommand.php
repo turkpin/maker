@@ -13,8 +13,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class MakeEntityCommand extends Command
 {
-    protected static $defaultName = 'entity';
-
     public function __construct()
     {
         parent::__construct();
@@ -23,6 +21,7 @@ class MakeEntityCommand extends Command
     protected function configure()
     {
         $this
+            ->setName('entity')
             ->setDescription('Create entities, optionally inside a directory')
             ->addArgument('names', InputArgument::IS_ARRAY | InputArgument::REQUIRED, 'The entity names or directory and entity names');
     }
