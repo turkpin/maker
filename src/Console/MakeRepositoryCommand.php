@@ -2,9 +2,6 @@
 
 namespace Turkpin\Maker\Console;
 
-use Turkpin\Maker\Helpers\Template;
-use Turkpin\Maker\Helpers\Directory;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
