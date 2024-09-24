@@ -2,6 +2,7 @@
 
 namespace Turkpin\Maker\Console;
 
+use Turkpin\Maker\Helpers\MakerHelper;
 use Turkpin\Maker\Helpers\Template;
 use Turkpin\Maker\Helpers\Directory;
 use Symfony\Component\Filesystem\Filesystem;
@@ -28,38 +29,7 @@ class MakeEntityCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $names = $input->getArgument('names');
-        $filesystem = new Filesystem();
-
-        if (count($names) === 1) {
-            $this->createEntity($names[0], $filesystem, $output);
-        } elseif (count($names) > 1) {
-            $directory = $names[0];
-            $entities = array_slice($names, 1);
-
-            foreach ($entities as $entity) {
-                $this->createEntity($entity, $filesystem, $output, $directory);
-            }
-        }
-
+        MakerHelper::processItems('entity', $input, $output);
         return Command::SUCCESS;
-    }
-
-    private function createEntity($name, Filesystem $filesystem, OutputInterface $output, $baseDir = null)
-    {
-        $entityName = $name;
-
-        $dirPath = $baseDir ? "models/{$baseDir}/{$name}" : "models/{$name}";
-        $path = "{$dirPath}/{$entityName}.php";
-
-        Directory::ensureDirectoryExists($dirPath, $filesystem);
-
-        if (!$filesystem->exists($path)) {
-            $content = Template::render(self::$defaultName, ['name' => $name]);
-            $filesystem->dumpFile($path, $content);
-            $output->writeln("<info>Entity '{$entityName}' created successfully at {$path}.</info>");
-        } else {
-            $output->writeln("<error>Entity '{$entityName}' already exists at {$path}.</error>");
-        }
     }
 }

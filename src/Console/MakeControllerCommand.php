@@ -2,6 +2,7 @@
 
 namespace Turkpin\Maker\Console;
 
+use Turkpin\Maker\Helpers\MakerHelper;
 use Turkpin\Maker\Helpers\Template;
 use Turkpin\Maker\Helpers\Directory;
 use Symfony\Component\Filesystem\Filesystem;
@@ -28,41 +29,7 @@ class MakeControllerCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $names = $input->getArgument('names');
-        $filesystem = new Filesystem();
-
-        if (count($names) === 1) {
-            $this->createController($names[0], $filesystem, $output);
-        } elseif (count($names) > 1) {
-            $directory = $names[0];
-            $controllers = array_slice($names, 1);
-
-            foreach ($controllers as $controller) {
-                $this->createController($controller, $filesystem, $output, $directory);
-            }
-        }
-
+        MakerHelper::processItems('controller', $input, $output);
         return Command::SUCCESS;
-    }
-
-    private function createController($name, Filesystem $filesystem, OutputInterface $output, $baseDir = null)
-    {
-        $inflector = new EnglishInflector();
-
-        $namePlural = $inflector->pluralize($name)[0];
-        $controllerName = "{$namePlural}Controller";
-
-        $dirPath = $baseDir ? "controllers/{$baseDir}" : "controllers";
-        $path = "{$dirPath}/{$controllerName}.php";
-
-        Directory::ensureDirectoryExists($dirPath, $filesystem);
-
-        if (!$filesystem->exists($path)) {
-            $content = Template::render(self::$defaultName, ['name' => $namePlural]);
-            $filesystem->dumpFile($path, $content);
-            $output->writeln("<info>Controller '{$controllerName}' created successfully at {$path}.</info>");
-        } else {
-            $output->writeln("<error>Controller '{$controllerName}' already exists at {$path}.</error>");
-        }
     }
 }
