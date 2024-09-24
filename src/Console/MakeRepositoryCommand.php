@@ -47,8 +47,7 @@ class MakeRepositoryCommand extends Command
 
     private function createRepository($name, Filesystem $filesystem, OutputInterface $output, $baseDir = null)
     {
-        $namePlural = "{$name}s";
-        $repositoryName = "{$namePlural}Repository";
+        $repositoryName = "{$name}Repository";
 
         $dirPath = $baseDir ? "models/{$baseDir}/{$name}" : "models/{$name}";
         $path = "{$dirPath}/{$repositoryName}.php";
