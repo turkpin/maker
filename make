@@ -1,7 +1,19 @@
 #!/usr/bin/env php
 <?php
 
-require __DIR__ . '/../../autoload.php';
+if (PHP_SAPI !== 'cli') {
+    echo 'This script can only be run from the command line.';
+    exit(1);
+}
+
+if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+    require __DIR__ . '/vendor/autoload.php';
+} elseif (file_exists(__DIR__ . '/../../autoload.php')) {
+    require __DIR__ . '/../../autoload.php';
+} else {
+    echo 'Autoload file not found.';
+    exit(1);
+}
 
 use Turkpin\Maker\Console\MakeCommand;
 use Symfony\Component\Console\Application;
