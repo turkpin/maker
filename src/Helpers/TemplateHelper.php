@@ -13,17 +13,18 @@ class TemplateHelper
 
         return $template;
     }
-    private static function getTemplate($path)
+    private static function getTemplate($path, $maxDepth = 6)
     {
-        $paths = [
-            __DIR__ . "/../{$path}",
-            __DIR__ . "/../../../../{$path}"
-        ];
+        $currentDir = __DIR__;
 
-        foreach ($paths as $templatePath) {
+        for ($i = 0; $i < $maxDepth; $i++) {
+            $templatePath = "$currentDir/$path";
+
             if (file_exists($templatePath)) {
                 return file_get_contents($templatePath);
             }
+
+            $currentDir = dirname($currentDir);
         }
 
         throw new \Exception("Template not found at {$path}.");
