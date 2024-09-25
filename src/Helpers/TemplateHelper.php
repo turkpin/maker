@@ -16,11 +16,10 @@ class TemplateHelper
 
     private static function getTemplate($path)
     {
-        $templatePath = __DIR__ . "/../$path";
-        if (!file_exists($templatePath)) {
-            throw new \Exception("Template file not found at {$templatePath}.");
+        if (!file_exists($path)) {
+            throw new \Exception("Template file not found at {$path}.");
         }
 
-        return file_get_contents($templatePath);
+        return file_get_contents($path);
     }
 }
