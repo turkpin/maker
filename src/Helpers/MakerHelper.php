@@ -84,7 +84,7 @@ class MakerHelper
 
         if (file_exists('maker.yaml')) {
             $config = Yaml::parseFile('maker.yaml');
-            self::$config = array_merge(self::$config, $config);
+            self::$config = ArrayHelper::arrayMergeRecursiveDistinct(self::$config, $config);
         }
     }
 
