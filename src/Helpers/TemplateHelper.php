@@ -2,7 +2,7 @@
 
 namespace Turkpin\Maker\Helpers;
 
-class Template
+class TemplateHelper
 {
     public static function render($name, $data)
     {

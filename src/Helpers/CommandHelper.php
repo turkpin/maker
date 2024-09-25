@@ -4,7 +4,7 @@ namespace Turkpin\Maker\Helpers;
 
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Command
+class CommandHelper
 {
     public static function run($commandName, $names, $application,  OutputInterface $output)
     {

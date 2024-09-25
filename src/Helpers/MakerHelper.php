@@ -54,10 +54,10 @@ class MakerHelper
 
         $path = "{$dirPath}/{$name}{$type}.php";
 
-        Directory::ensureDirectoryExists($dirPath, $filesystem);
+        DirectoryHelper::ensureDirectoryExists($dirPath, $filesystem);
 
         if (!$filesystem->exists($path)) {
-            $content = Template::render(strtolower($type), ['name' => $name]);
+            $content = TemplateHelper::render(strtolower($type), ['name' => $name]);
             $filesystem->dumpFile($path, $content);
             $output->writeln("<info>{$name}{$type} created successfully at {$path}.</info>");
         } else {

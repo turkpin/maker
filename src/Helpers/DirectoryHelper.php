@@ -4,7 +4,7 @@ namespace Turkpin\Maker\Helpers;
 
 use Symfony\Component\Filesystem\Filesystem;
 
-class Directory
+class DirectoryHelper
 {
     public static function ensureDirectoryExists($dirPath, Filesystem $filesystem)
     {

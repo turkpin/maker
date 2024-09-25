@@ -7,7 +7,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Turkpin\Maker\Helpers\Command as CommandHelper;
+use Turkpin\Maker\Helpers\CommandHelper;
 
 class MakeModelCommand extends Command
 {
