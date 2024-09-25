@@ -100,12 +100,12 @@ class MakerHelper
                 'seeder' => 'models',
             ],
             'templates' => [
-                'controller' => __DIR__ . '/../Templates/ControllerTemplate.stub',
-                'entity' => __DIR__ . '/../Templates/EntityTemplate.stub',
-                'repository' => __DIR__ . '/../Templates/RepositoryTemplate.stub',
-                'factory' => __DIR__ . '/../Templates/FactoryTemplate.stub',
-                'service' => __DIR__ . '/../Templates/ServiceTemplate.stub',
-                'seeder' => __DIR__ . '/../Templates/SeederTemplate.stub',
+                'controller' => 'Templates/ControllerTemplate.stub',
+                'entity' => 'Templates/EntityTemplate.stub',
+                'repository' => 'Templates/RepositoryTemplate.stub',
+                'factory' => 'Templates/FactoryTemplate.stub',
+                'service' => 'Templates/ServiceTemplate.stub',
+                'seeder' => 'Templates/SeederTemplate.stub',
             ],
             'extensions' => [
                 'controller' => 'php',
