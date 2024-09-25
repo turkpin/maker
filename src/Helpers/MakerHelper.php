@@ -2,13 +2,16 @@
 
 namespace Turkpin\Maker\Helpers;
 
+use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\String\Inflector\EnglishInflector;
 
 class MakerHelper
 {
+    protected static $config;
+
     public static function processItems(
         string $type,
         InputInterface $input,
@@ -32,32 +35,36 @@ class MakerHelper
         OutputInterface $output,
         string $baseDir = null
     ) {
+        self::loadConfig();
+
+        $directory = self::$config['directories'][strtolower($type)];
+        $template = self::$config['templates'][strtolower($type)];
+        $variables = self::$config['variables'][strtolower($type)];
+        $extension = self::$config['extensions'][strtolower($type)];
+
         $name = ucfirst($name);
         $type = ucfirst($type);
 
-        $dirMap = [
-            'models' => ['Entity', 'Repository', 'Factory', 'Service', 'Seeder'],
-            'controllers' => ['Controller']
-        ];
-
-        foreach ($dirMap as $dir => $types) {
-            if (in_array($type, $types)) {
-                if ($type === 'Controller') {
-                    echo $dirPath = $baseDir ? "{$dir}/{$baseDir}" : $dir;
-                    $name = self::pluralizeNameIfNecessary($name, $type);
-                } else {
-                    $dirPath = $baseDir ? "{$dir}/{$baseDir}/{$name}" : "{$dir}/{$name}";
-                }
-                break;
-            }
+        if ($type === 'Controller') {
+            $name = self::pluralizeNameIfNecessary($name);
+            $dirPath = $baseDir ? "{$directory}/{$baseDir}" : $directory;
+        } else {
+            $dirPath = $baseDir ? "{$directory}/{$baseDir}/{$name}" : "{$directory}/{$name}";
         }
 
-        $path = "{$dirPath}/{$name}{$type}.php";
+        $path = "{$dirPath}/{$name}{$type}.{$extension}";
 
         DirectoryHelper::ensureDirectoryExists($dirPath, $filesystem);
 
         if (!$filesystem->exists($path)) {
-            $content = TemplateHelper::render(strtolower($type), ['name' => $name]);
+            foreach ($variables as $key => $value) {
+                if (is_numeric($key)) {
+                    $variables[$value] = $$value;
+                    unset($variables[$key]);
+                }
+            }
+
+            $content = TemplateHelper::render($template, $variables);
             $filesystem->dumpFile($path, $content);
             $output->writeln("<info>{$name}{$type} created successfully at {$path}.</info>");
         } else {
@@ -65,12 +72,57 @@ class MakerHelper
         }
     }
 
-    private static function pluralizeNameIfNecessary(string $name, string $type): string
+    private static function pluralizeNameIfNecessary(string $name): string
     {
-        if ($type === 'Controller') {
-            $inflector = new EnglishInflector();
-            return $inflector->pluralize($name)[0];
+        $inflector = new EnglishInflector();
+        return $inflector->pluralize($name)[0];
+    }
+
+    public static function loadConfig()
+    {
+        self::$config = self::Preset();
+
+        if (file_exists('maker.yaml')) {
+            $config = Yaml::parseFile('maker.yaml');
+            self::$config = array_merge(self::$config, $config);
         }
-        return $name;
+    }
+
+    private static function Preset()
+    {
+        return [
+            'directories' => [
+                'controller' => 'controllers',
+                'entity' => 'models',
+                'repository' => 'models',
+                'factory' => 'models',
+                'service' => 'models',
+                'seeder' => 'models',
+            ],
+            'templates' => [
+                'controller' => 'Templates/ControllerTemplate.stub',
+                'entity' => 'Templates/EntityTemplate.stub',
+                'repository' => 'Templates/RepositoryTemplate.stub',
+                'factory' => 'Templates/FactoryTemplate.stub',
+                'service' => 'Templates/ServiceTemplate.stub',
+                'seeder' => 'Templates/SeederTemplate.stub',
+            ],
+            'extensions' => [
+                'controller' => 'php',
+                'entity' => 'php',
+                'repository' => 'php',
+                'factory' => 'php',
+                'service' => 'php',
+                'seeder' => 'php',
+            ],
+            'variables' => [
+                'controller' => ['name'],
+                'entity' => ['name'],
+                'repository' => ['name'],
+                'factory' => ['name'],
+                'service' => ['name'],
+                'seeder' => ['name'],
+            ],
+        ];
     }
 }

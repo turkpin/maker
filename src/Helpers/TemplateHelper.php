@@ -4,40 +4,23 @@ namespace Turkpin\Maker\Helpers;
 
 class TemplateHelper
 {
-    public static function render($name, $data)
+    public static function render($path, $variables)
     {
-        $template = self::getTemplate($name);
-        foreach ($data as $key => $value) {
+        $template = self::getTemplate($path);
+        foreach ($variables as $key => $value) {
             $template = str_replace("{{$key}}", $value, $template);
         }
 
         return $template;
     }
 
-    private static function getTemplate($name)
+    private static function getTemplate($path)
     {
-        $templatePath = self::findTemplatePath($name);
+        $templatePath = __DIR__ . "/../$path";
         if (!file_exists($templatePath)) {
-            throw new \Exception("Template file not found: {$name}");
+            throw new \Exception("Template file not found at {$templatePath}.");
         }
 
         return file_get_contents($templatePath);
-    }
-
-    private static function findTemplatePath($name)
-    {
-        $path = __DIR__ . "/../Templates/";
-
-        $nameLower = strtolower($name);
-
-        $files = scandir($path);
-        foreach ($files as $file) {
-            $fileLower = strtolower($file);
-            if (strpos($fileLower, $nameLower) !== false && substr($fileLower, -5) === '.stub') {
-                return "$path$file";
-            }
-        }
-
-        throw new \Exception("No template found matching: {$name}");
     }
 }
