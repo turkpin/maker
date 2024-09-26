@@ -40,17 +40,17 @@ $application->setName('Turkpin Maker');
 $application->setVersion('1.0.0');
 
 $application->addCommands([
+    new MakeRouteCommand(),
     new MakeEntityCommand(),
     new MakeServiceCommand(),
     new MakeRepositoryCommand(),
-    new MakeControllerCommand(),
     new MakeFactoryCommand(),
     new MakeSeederCommand(),
     new MakeListViewCommand(),
     new MakeShowViewCommand(),
     new MakeEditViewCommand(),
     new MakeAddViewCommand(),
-    new MakeRouteCommand(),
+    new MakeControllerCommand(),
     new MakeCommand($application),
     new MakeModelCommand($application),
     new MakeViewCommand($application),
