@@ -1,0 +1,16 @@
+<?php
+
+$slimApp->group("/seed", function (RouteCollectorProxy $group) {
+    $group->get("/{name}", [{Name}SeedController::class, "seed"]);
+});
+
+$group->group("{name}", function (RouteCollectorProxy $group) {
+    $group->get("[/]", [{Name}Controller::class, "list"]);
+    $group->get("/add", [{Name}Controller::class, "add"]);
+    $group->post("/add", [{Name}Controller::class, "store"]);
+    $group->get("/{id:[0-9]+}[/]", [{Name}Controller::class, "show"]);
+    $group->get("/{id:[0-9]+}[/edit]", [{Name}Controller::class, "edit"]);
+    $group->post("/{id:[0-9]+}/update", [{Name}Controller::class, "update"]);
+    $group->post("/{id:[0-9]+}/delete", [{Name}Controller::class, "delete"]);
+    $group->post("/{id:[0-9]+}/undelete", [{Name}Controller::class, "undelete"]);
+});
