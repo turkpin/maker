@@ -61,9 +61,15 @@ class MakerHelper
             $path = "{$dirPath}/{$type}.{$extension}";
         }
 
+        if ($type === 'Route') {
+            $dirPath = $directory;
+            $tpye_name = lcfirst(self::pluralizeNameIfNecessary($type));
+            $path = "{$directory}/{$tpye_name}.{$extension}";
+        }
+
         DirectoryHelper::ensureDirectoryExists($dirPath, $filesystem);
 
-        if (!$filesystem->exists($path)) {
+        if (!$filesystem->exists($path) || $type === 'Route') {
             foreach ($variables as $key => $value) {
                 if (is_numeric($key)) {
                     $variables[$value] = $$value;
@@ -72,7 +78,7 @@ class MakerHelper
             }
 
             $content = TemplateHelper::render($template, $variables);
-            $filesystem->dumpFile($path, $content);
+            $filesystem->appendToFile($path, $content);
             $output->writeln("<info>{$name}{$type} created successfully at {$path}.</info>");
         } else {
             $output->writeln("<error>{$name}{$type} already exists at {$path}.</error>");
