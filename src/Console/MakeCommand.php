@@ -23,14 +23,15 @@ class MakeCommand extends Command
     {
         $this
             ->setName('make')
-            ->setDescription('General make command that runs Model, View, and Controller commands')
-            ->addArgument('names', InputArgument::IS_ARRAY | InputArgument::REQUIRED, 'The name of the model, view, and controller');
+            ->setDescription('General make command that runs route, model, view, and controller commands')
+            ->addArgument('names', InputArgument::IS_ARRAY | InputArgument::REQUIRED, 'The name of the route, model, view, and controller');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $names = $input->getArgument('names');
 
+        CommandHelper::run('route', $names, $this->application, $output);
         CommandHelper::run('model', $names, $this->application, $output);
         CommandHelper::run('view', $names, $this->application, $output);
         CommandHelper::run('controller', $names, $this->application, $output);
