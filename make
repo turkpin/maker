@@ -4,12 +4,17 @@
 use Turkpin\Maker\Console\MakeCommand;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
+use Turkpin\Maker\Console\View\MakeViewCommand;
 use Turkpin\Maker\Console\Model\MakeModelCommand;
 use Turkpin\Maker\Console\Model\MakeEntityCommand;
 use Turkpin\Maker\Console\Model\MakeSeederCommand;
+use Turkpin\Maker\Console\View\MakeAddViewCommand;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Turkpin\Maker\Console\Model\MakeFactoryCommand;
 use Turkpin\Maker\Console\Model\MakeServiceCommand;
+use Turkpin\Maker\Console\View\MakeEditViewCommand;
+use Turkpin\Maker\Console\View\MakeListViewCommand;
+use Turkpin\Maker\Console\View\MakeShowViewCommand;
 use Turkpin\Maker\Console\Model\MakeRepositoryCommand;
 use Turkpin\Maker\Console\Controller\MakeControllerCommand;
 
@@ -40,8 +45,13 @@ $application->addCommands([
     new MakeControllerCommand(),
     new MakeFactoryCommand(),
     new MakeSeederCommand(),
+    new MakeListViewCommand(),
+    new MakeShowViewCommand(),
+    new MakeEditViewCommand(),
+    new MakeAddViewCommand(),
     new MakeCommand($application),
     new MakeModelCommand($application),
+    new MakeViewCommand($application),
 ]);
 
 $commandName = $argv[1] ?? null;
