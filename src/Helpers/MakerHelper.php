@@ -98,6 +98,10 @@ class MakerHelper
                 'factory' => 'models',
                 'service' => 'models',
                 'seeder' => 'models',
+                'list_view' => 'templates',
+                'show_view' => 'templates',
+                'add_view' => 'templates',
+                'edit_view' => 'templates',
             ],
             'templates' => [
                 'controller' => 'Templates/Controller/ControllerTemplate.stub',
@@ -106,6 +110,10 @@ class MakerHelper
                 'factory' => 'Templates/Model/FactoryTemplate.stub',
                 'service' => 'Templates/Model/ServiceTemplate.stub',
                 'seeder' => 'Templates/Model/SeederTemplate.stub',
+                'list_view' => 'Templates/View/ListViewTemplate.stub',
+                'show_view' => 'Templates/View/ShowViewTemplate.stub',
+                'add_view' => 'Templates/View/AddViewTemplate.stub',
+                'edit_view' => 'Templates/View/EditViewTemplate.stub',
             ],
             'extensions' => [
                 'controller' => 'php',
@@ -114,6 +122,10 @@ class MakerHelper
                 'factory' => 'php',
                 'service' => 'php',
                 'seeder' => 'php',
+                'list_view' => 'tpl',
+                'show_view' => 'tpl',
+                'add_view' => 'tpl',
+                'edit_view' => 'tpl',
             ],
             'variables' => [
                 'controller' => ['name'],
