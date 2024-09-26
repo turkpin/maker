@@ -54,6 +54,13 @@ class MakerHelper
             $path = "{$dirPath}/{$name}{$type}.{$extension}";
         }
 
+        if (str_contains($type, '_view')) {
+            $name = self::pluralizeNameIfNecessary($name);
+            $type = lcfirst(str_replace('_view', '', $type));
+            $dirPath = $baseDir ? "{$directory}/{$baseDir}/{$name}" : "{$directory}/{$name}";
+            $path = "{$dirPath}/{$type}.{$extension}";
+        }
+
         DirectoryHelper::ensureDirectoryExists($dirPath, $filesystem);
 
         if (!$filesystem->exists($path)) {
