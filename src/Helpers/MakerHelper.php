@@ -67,6 +67,9 @@ class MakerHelper
             $path = "{$directory}/{$tpye_name}.{$extension}";
         }
 
+        $Name = $name;
+        $name = lcfirst($name);
+
         DirectoryHelper::ensureDirectoryExists($dirPath, $filesystem);
 
         if (!$filesystem->exists($path) || $type === 'Route') {

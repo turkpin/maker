@@ -1,6 +1,6 @@
 <?php
 
-class {name}Seeder
+class {Name}Seeder
 {
     public static function run()
     {

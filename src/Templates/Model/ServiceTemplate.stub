@@ -1,6 +1,6 @@
 <?php
 
-class {name}Service
+class {Name}Service
 {
     public function execute()
     {

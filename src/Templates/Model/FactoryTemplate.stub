@@ -1,6 +1,6 @@
 <?php
 
-class {name}Factory
+class {Name}Factory
 {
     public static function create()
     {

@@ -1,6 +1,6 @@
 <?php
 
-class {name}Repository
+class {Name}Repository
 {
     public function find()
     {

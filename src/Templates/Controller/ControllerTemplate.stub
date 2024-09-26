@@ -1,6 +1,6 @@
 <?php
 
-class {name}Controller
+class {Name}Controller
 {
     public function index()
     {

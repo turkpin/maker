@@ -39,16 +39,17 @@ extensions:
 
 variables:
   controller:
-    - name
+    - Name
   entity:
-    - name
+    - Name
   repository:
-    - name
+    - Name
   factory:
-    - name
+    - Name
   service:
-    - name
+    - Name
   seeder:
-    - name
+    - Name
   route:
+    - Name
     - name
