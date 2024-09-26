@@ -81,6 +81,11 @@ class MakerHelper
             }
 
             $content = TemplateHelper::render($template, $variables);
+
+            if ($filesystem->exists($path) && $type === 'Route') {
+                $content = str_replace("<?php\n", '', $content);
+            }
+
             $filesystem->appendToFile($path, $content);
             $output->writeln("<info>{$name}{$type} created successfully at {$path}.</info>");
         } else {
