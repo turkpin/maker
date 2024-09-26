@@ -1,4 +1,5 @@
 directories:
+  controller: App/controllers
   entity: App/models
   repository: App/models
   factory: App/models
