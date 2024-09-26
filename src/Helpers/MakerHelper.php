@@ -45,14 +45,14 @@ class MakerHelper
         $name = ucfirst($name);
         $type = ucfirst($type);
 
+        $dirPath = $baseDir ? "{$directory}/{$baseDir}/{$name}" : "{$directory}/{$name}";
+        $path = "{$dirPath}/{$name}{$type}.{$extension}";
+
         if ($type === 'Controller') {
             $name = self::pluralizeNameIfNecessary($name);
             $dirPath = $baseDir ? "{$directory}/{$baseDir}" : $directory;
-        } else {
-            $dirPath = $baseDir ? "{$directory}/{$baseDir}/{$name}" : "{$directory}/{$name}";
+            $path = "{$dirPath}/{$name}{$type}.{$extension}";
         }
-
-        $path = "{$dirPath}/{$name}{$type}.{$extension}";
 
         DirectoryHelper::ensureDirectoryExists($dirPath, $filesystem);
 
