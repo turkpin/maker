@@ -1,0 +1,16 @@
+{extends file="layouts/dashboard.tpl"}
+
+{block name=head append}
+    <style>
+    
+    </style>
+    <script>
+
+    </script>
+{/block}
+
+{block name=content append}
+    <div>
+        
+    </div>
+{/block}
