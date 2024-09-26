@@ -4,6 +4,7 @@
 use Turkpin\Maker\Console\MakeCommand;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
+use Turkpin\Maker\Console\route\MakeRouteCommand;
 use Turkpin\Maker\Console\View\MakeViewCommand;
 use Turkpin\Maker\Console\Model\MakeModelCommand;
 use Turkpin\Maker\Console\Model\MakeEntityCommand;
@@ -49,6 +50,7 @@ $application->addCommands([
     new MakeShowViewCommand(),
     new MakeEditViewCommand(),
     new MakeAddViewCommand(),
+    new MakeRouteCommand(),
     new MakeCommand($application),
     new MakeModelCommand($application),
     new MakeViewCommand($application),
