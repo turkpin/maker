@@ -1,5 +1,4 @@
 directories:
-  controller: App/controllers
   entity: App/models
   repository: App/models
   factory: App/models
@@ -9,6 +8,7 @@ directories:
   show_view: App/templates
   add_view: App/templates
   edit_view: App/templates
+  route: App
 
 templates:
   controller: Templates/Controller/ControllerTemplate.stub
@@ -21,6 +21,7 @@ templates:
   show_view: Templates/View/ShowViewTemplate.stub
   add_view: Templates/View/AddViewTemplate.stub
   edit_view: Templates/View/EditViewTemplate.stub
+  route: Templates/Route/RouteTemplate.stub
 
 extensions:
   controller: php
@@ -33,6 +34,7 @@ extensions:
   show_view: tpl
   add_view: tpl
   edit_view: tpl
+  route: php
 
 variables:
   controller:
@@ -46,4 +48,6 @@ variables:
   service:
     - name
   seeder:
+    - name
+  route:
     - name
