@@ -10,7 +10,7 @@ use Symfony\Component\String\Inflector\EnglishInflector;
 
 class MakerHelper
 {
-    protected static $config;
+    protected static $config = [];
 
     public static function processItems(
         string $type,
@@ -80,61 +80,16 @@ class MakerHelper
 
     public static function loadConfig()
     {
-        self::$config = self::Preset();
-
-        if (file_exists('maker.yaml')) {
-            $config = Yaml::parseFile('maker.yaml');
-            self::$config = ArrayHelper::arrayMergeRecursiveDistinct(self::$config, $config);
-        }
-    }
-
-    private static function Preset()
-    {
-        return [
-            'directories' => [
-                'controller' => 'controllers',
-                'entity' => 'models',
-                'repository' => 'models',
-                'factory' => 'models',
-                'service' => 'models',
-                'seeder' => 'models',
-                'list_view' => 'templates',
-                'show_view' => 'templates',
-                'add_view' => 'templates',
-                'edit_view' => 'templates',
-            ],
-            'templates' => [
-                'controller' => 'Templates/Controller/ControllerTemplate.stub',
-                'entity' => 'Templates/Model/EntityTemplate.stub',
-                'repository' => 'Templates/Model/RepositoryTemplate.stub',
-                'factory' => 'Templates/Model/FactoryTemplate.stub',
-                'service' => 'Templates/Model/ServiceTemplate.stub',
-                'seeder' => 'Templates/Model/SeederTemplate.stub',
-                'list_view' => 'Templates/View/ListViewTemplate.stub',
-                'show_view' => 'Templates/View/ShowViewTemplate.stub',
-                'add_view' => 'Templates/View/AddViewTemplate.stub',
-                'edit_view' => 'Templates/View/EditViewTemplate.stub',
-            ],
-            'extensions' => [
-                'controller' => 'php',
-                'entity' => 'php',
-                'repository' => 'php',
-                'factory' => 'php',
-                'service' => 'php',
-                'seeder' => 'php',
-                'list_view' => 'tpl',
-                'show_view' => 'tpl',
-                'add_view' => 'tpl',
-                'edit_view' => 'tpl',
-            ],
-            'variables' => [
-                'controller' => ['name'],
-                'entity' => ['name'],
-                'repository' => ['name'],
-                'factory' => ['name'],
-                'service' => ['name'],
-                'seeder' => ['name'],
-            ],
+        $config_files = [
+            'maker-preset.yaml',
+            'maker.yaml',
         ];
+
+        foreach ($config_files as $config_file) {
+            if (file_exists($config_file)) {
+                self::$config = Yaml::parseFile($config_file);
+                return;
+            }
+        }
     }
 }

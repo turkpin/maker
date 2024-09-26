@@ -1,0 +1,49 @@
+directories:
+  controller: App/controllers
+  entity: App/models
+  repository: App/models
+  factory: App/models
+  service: App/models
+  seeder: App/models
+  list_view: App/templates
+  show_view: App/templates
+  add_view: App/templates
+  edit_view: App/templates
+
+templates:
+  controller: Templates/Controller/ControllerTemplate.stub
+  entity: Templates/Model/EntityTemplate.stub
+  repository: Templates/Model/RepositoryTemplate.stub
+  factory: Templates/Model/FactoryTemplate.stub
+  service: Templates/Model/ServiceTemplate.stub
+  seeder: Templates/Model/SeederTemplate.stub
+  list_view: Templates/View/ListViewTemplate.stub
+  show_view: Templates/View/ShowViewTemplate.stub
+  add_view: Templates/View/AddViewTemplate.stub
+  edit_view: Templates/View/EditViewTemplate.stub
+
+extensions:
+  controller: php
+  entity: php
+  repository: php
+  factory: php
+  service: php
+  seeder: php
+  list_view: tpl
+  show_view: tpl
+  add_view: tpl
+  edit_view: tpl
+
+variables:
+  controller:
+    - name
+  entity:
+    - name
+  repository:
+    - name
+  factory:
+    - name
+  service:
+    - name
+  seeder:
+    - name
