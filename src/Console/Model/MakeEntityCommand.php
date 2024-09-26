@@ -1,6 +1,6 @@
 <?php
 
-namespace Turkpin\Maker\Console;
+namespace Turkpin\Maker\Console\Model;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -8,7 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Turkpin\Maker\Helpers\MakerHelper;
 
-class MakeControllerCommand extends Command
+class MakeEntityCommand extends Command
 {
     public function __construct()
     {
@@ -18,14 +18,14 @@ class MakeControllerCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('controller')
-            ->setDescription('Create controllers, optionally inside a directory')
-            ->addArgument('names', InputArgument::IS_ARRAY | InputArgument::REQUIRED, 'The controller names or directory and controller names');
+            ->setName('entity')
+            ->setDescription('Create entities, optionally inside a directory')
+            ->addArgument('names', InputArgument::IS_ARRAY | InputArgument::REQUIRED, 'The entity names or directory and entity names');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        MakerHelper::processItems('controller', $input, $output);
+        MakerHelper::processItems('entity', $input, $output);
         return Command::SUCCESS;
     }
 }

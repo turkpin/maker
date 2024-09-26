@@ -1,6 +1,6 @@
 <?php
 
-namespace Turkpin\Maker\Console;
+namespace Turkpin\Maker\Console\Model;
 
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;

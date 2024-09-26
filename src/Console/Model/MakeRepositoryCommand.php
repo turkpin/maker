@@ -1,6 +1,6 @@
 <?php
 
-namespace Turkpin\Maker\Console;
+namespace Turkpin\Maker\Console\Model;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -8,7 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Turkpin\Maker\Helpers\MakerHelper;
 
-class MakeFactoryCommand extends Command
+class MakeRepositoryCommand extends Command
 {
     public function __construct()
     {
@@ -18,14 +18,14 @@ class MakeFactoryCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('factory')
-            ->setDescription('Create factorys, optionally inside a directory')
-            ->addArgument('names', InputArgument::IS_ARRAY | InputArgument::REQUIRED, 'The factory names or directory and factory names');
+            ->setName('repository')
+            ->setDescription('Create repositories, optionally inside a directory')
+            ->addArgument('names', InputArgument::IS_ARRAY | InputArgument::REQUIRED, 'The repository names or directory and repository names');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        MakerHelper::processItems('factory', $input, $output);
+        MakerHelper::processItems('repository', $input, $output);
         return Command::SUCCESS;
     }
 }

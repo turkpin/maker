@@ -1,6 +1,19 @@
 #!/usr/bin/env php
 <?php
 
+use Turkpin\Maker\Console\MakeCommand;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\ArrayInput;
+use Turkpin\Maker\Console\Model\MakeModelCommand;
+use Turkpin\Maker\Console\Model\MakeEntityCommand;
+use Turkpin\Maker\Console\Model\MakeSeederCommand;
+use Symfony\Component\Console\Output\ConsoleOutput;
+use Turkpin\Maker\Console\Model\MakeFactoryCommand;
+use Turkpin\Maker\Console\Model\MakeServiceCommand;
+use Turkpin\Maker\Console\Model\MakeRepositoryCommand;
+use Turkpin\Maker\Console\Controller\MakeControllerCommand;
+
+
 if (PHP_SAPI !== 'cli') {
     echo 'This script can only be run from the command line.';
     exit(1);
@@ -14,18 +27,6 @@ if (file_exists(__DIR__ . '/vendor/autoload.php')) {
     echo 'Autoload file not found.';
     exit(1);
 }
-
-use Turkpin\Maker\Console\MakeCommand;
-use Symfony\Component\Console\Application;
-use Turkpin\Maker\Console\MakeModelCommand;
-use Turkpin\Maker\Console\MakeEntityCommand;
-use Turkpin\Maker\Console\MakeSeederCommand;
-use Turkpin\Maker\Console\MakeFactoryCommand;
-use Turkpin\Maker\Console\MakeServiceCommand;
-use Symfony\Component\Console\Input\ArrayInput;
-use Turkpin\Maker\Console\MakeControllerCommand;
-use Turkpin\Maker\Console\MakeRepositoryCommand;
-use Symfony\Component\Console\Output\ConsoleOutput;
 
 $application = new Application();
 

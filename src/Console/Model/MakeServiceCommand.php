@@ -1,6 +1,6 @@
 <?php
 
-namespace Turkpin\Maker\Console;
+namespace Turkpin\Maker\Console\Model;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
