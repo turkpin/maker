@@ -37,10 +37,10 @@ class MakerHelper
     ) {
         self::loadConfig();
 
-        $directory = self::$config['directories'][strtolower($type)];
-        $template = self::$config['templates'][strtolower($type)];
-        $variables = self::$config['variables'][strtolower($type)];
-        $extension = self::$config['extensions'][strtolower($type)];
+        $directory = self::$config['directories'][strtolower($type)] ?? [];
+        $template = self::$config['templates'][strtolower($type)] ?? [];
+        $variables = self::$config['variables'][strtolower($type)] ?? [];
+        $extension = self::$config['extensions'][strtolower($type)] ?? [];
 
         $name = ucfirst($name);
         $type = ucfirst($type);
