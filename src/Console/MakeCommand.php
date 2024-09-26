@@ -23,8 +23,8 @@ class MakeCommand extends Command
     {
         $this
             ->setName('make')
-            ->setDescription('General make command that runs Entity, Service, Repository, and Controller')
-            ->addArgument('names', InputArgument::IS_ARRAY | InputArgument::REQUIRED, 'The name of the class (Entity, Service, Repository, and Controller will be created)');
+            ->setDescription('General make command that runs Model, View, and Controller commands')
+            ->addArgument('names', InputArgument::IS_ARRAY | InputArgument::REQUIRED, 'The name of the model, view, and controller');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -32,6 +32,7 @@ class MakeCommand extends Command
         $names = $input->getArgument('names');
 
         CommandHelper::run('model', $names, $this->application, $output);
+        CommandHelper::run('view', $names, $this->application, $output);
         CommandHelper::run('controller', $names, $this->application, $output);
 
         return Command::SUCCESS;
