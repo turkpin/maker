@@ -12,85 +12,117 @@ chmod +x make
 
 # Usage
 
-- `php make User` makes the following files:
+<table>
 
-  ```
-  controllers/UsersController.php
-  models/User/UserRepository.php
-  models/User/UserService.php
-  models/User/UserFactory.php
-  models/User/UserSeeder.php
-  models/User/User.php
-  ```
+  <tr>
+    <td><pre>php make User</pre></td>
+    <td>
+<pre>
+controllers/UsersController.php
+models/User/UserRepository.php
+models/User/UserService.php
+models/User/UserFactory.php
+models/User/UserSeeder.php
+models/User/User.php
+</pre>
+    </td>
+  </tr>
 
-- `php make controller User` makes the following files:
+  <tr>
+    <td><pre>php make controller User</pre></td>
+    <td>
+<pre>
+controllers/UsersController.php
+</pre>
+    </td>
+  </tr>
 
-  ```
-  controllers/UsersController.php
-  ```
+  <tr>
+    <td><pre>php make model User</pre></td>
+    <td>
+<pre>
+models/User/UserRepository.php
+models/User/UserService.php
+models/User/UserFactory.php
+models/User/UserSeeder.php
+models/User/User.php
+</pre>
+    </td>
+  </tr>
 
-- `php make model User` makes the following files:
+  <tr>
+    <td><pre>php make repository User</pre></td>
+    <td>
+<pre>
+models/User/UserRepository.php
+</pre>
+    </td>
+  </tr>
 
-  ```
-  models/User/UserRepository.php
-  models/User/UserService.php
-  models/User/UserFactory.php
-  models/User/UserSeeder.php
-  models/User/User.php
-  ```
+  <tr>
+    <td><pre>php make service User</pre></td>
+    <td>
+<pre>
+models/User/UserService.php
+</pre>
+    </td>
+  </tr>
 
-- `php make repository User` makes the following files:
+  <tr>
+    <td><pre>php make entity User</pre></td>
+    <td>
+<pre>
+models/User/User.php
+</pre>
+    </td>
+  </tr>
 
-  ```
-  models/User/UserRepository.php
-  ```
+  <tr>
+    <td><pre>php make User Address Billing</pre></td>
+    <td>
+<pre>
+controllers/User/AddressController.php
+controllers/User/BillingController.php
+models/User/Address/AddressRepository.php
+models/User/Address/AddressService.php
+models/User/Address/AddressFactory.php
+models/User/Address/AddressSeeder.php
+models/User/Address/Address.php
+models/User/Billing/BillingRepository.php
+models/User/Billing/BillingService.php
+models/User/Billing/BillingFactory.php
+models/User/Billing/BillingSeeder.php
+models/User/Billing/Billing.php
+</pre>
+    </td>
+  </tr>
 
-- `php make service User` makes the following files:
+  <tr>
+    <td><pre>php make controller User Address Billing</pre></td>
+    <td>
+<pre>
+controllers/User/AddressController.php
+controllers/User/BillingController.php
+</pre>
+    </td>
+  </tr>
 
-  ```
-  models/User/UserService.php
-  ```
-- `php make entity User` makes the following files:
+  <tr>
+    <td><pre>php make model User Address Billing</pre></td>
+    <td>
+<pre>
+models/User/Address/AddressRepository.php
+models/User/Address/AddressService.php
+models/User/Address/AddressFactory.php
+models/User/Address/AddressSeeder.php
+models/User/Address/Address.php
+models/User/Billing/BillingRepository.php
+models/User/Billing/BillingService.php
+models/User/Billing/BillingFactory.php
+models/User/Billing/BillingSeeder.php
+models/User/Billing/Billing.php
+</pre>
+    </td>
+  </tr>
 
-  ```
-  models/User/User.php
-  ```
-
-- `php make User Address Billing` makes the following files:
-
-  ```
-  controllers/User/AddressController.php
-  controllers/User/BillingController.php
-  models/User/Address/AddressRepository.php
-  models/User/Address/AddressService.php
-  models/User/Address/AddressFactory.php
-  models/User/Address/AddressSeeder.php
-  models/User/Address/Address.php
-  models/User/Billing/BillingRepository.php
-  models/User/Billing/BillingService.php
-  models/User/Billing/BillingFactory.php
-  models/User/Billing/BillingSeeder.php
-  models/User/Billing/Billing.php
-  ```
-
-- `php make controller User Address Billing` makes the following files:
-
-  ```
-  controllers/User/AddressController.php
-  controllers/User/BillingController.php
-  ```
-
-- `php make model User Address Billing` makes the following files:
-
-  ```
-  models/User/Address/AddressRepository.php
-  models/User/Address/AddressService.php
-  models/User/Address/AddressFactory.php
-  models/User/Address/AddressSeeder.php
-  models/User/Address/Address.php
-  models/User/Billing/BillingRepository.php
-  models/User/Billing/BillingService.php
-  models/User/Billing/BillingFactory.php
-  models/User/Billing/BillingSeeder.php
-  models/User/Billing/Billing.php
-  ```
+<table>
